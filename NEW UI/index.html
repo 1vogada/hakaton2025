@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Web dictaphone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="styles/app.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div class="wrapper" style="display: flex; flex-direction: row; gap: 2em; justify-content: center;">
+      <!-- User 1 Column -->
+      <div class="user-column" id="user1-col" style="flex: 1; min-width: 300px;">
+        <h2>User 1</h2>
+        <label for="user1-lang">Language:</label>
+        <select id="user1-lang"></select>
+        <!-- BEGIN: Transcript (removable) -->
+        <div class="transcript" id="transcript1">Transcript will appear here...</div>
+        <!-- END: Transcript -->
+        <div class="main-controls">
+          <canvas class="visualizer" id="visualizer1" height="60px"></canvas>
+          <div id="buttons1">
+            <button class="record" id="record1">Record</button>
+            <button class="stop" id="stop1">Stop</button>
+          </div>
+        </div>
+        <section class="sound-clips" id="sound-clips1"></section>
+      </div>
+      <!-- User 2 Column -->
+      <div class="user-column" id="user2-col" style="flex: 1; min-width: 300px;">
+        <h2>User 2</h2>
+        <label for="user2-lang">Language:</label>
+        <select id="user2-lang"></select>
+        <!-- BEGIN: Transcript (removable) -->
+        <div class="transcript" id="transcript2">Transcript will appear here...</div>
+        <!-- END: Transcript -->
+        <div class="main-controls">
+          <canvas class="visualizer" id="visualizer2" height="60px"></canvas>
+          <div id="buttons2">
+            <button class="record" id="record2">Record</button>
+            <button class="stop" id="stop2">Stop</button>
+          </div>
+        </div>
+        <section class="sound-clips" id="sound-clips2"></section>
+      </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+
+  </body>
+</html>

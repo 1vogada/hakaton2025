@@ -1,0 +1,344 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #3a8dde 0%, #7f53ac 100%);
+  color: #222;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -10vw;
+  left: -10vw;
+  width: 120vw;
+  height: 120vw;
+  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  gap: 2.5em;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 3em;
+  position: relative;
+  z-index: 1;
+}
+
+.user-column {
+  background: #fff;
+  border-radius: 32px 32px 32px 8px;
+  box-shadow: 0 8px 32px rgba(58,141,222,0.13), 0 2px 8px rgba(127,83,172,0.07);
+  padding: 2.5em 2em 2em 2em;
+  min-width: 320px;
+  max-width: 400px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  border-left: 8px solid #3a8dde;
+  transition: transform 0.18s cubic-bezier(.77,0,.18,1), box-shadow 0.18s;
+}
+.user-column#user2-col {
+  border-left: 8px solid #7f53ac;
+}
+.user-column:hover {
+  transform: translateY(-8px) scale(1.025) rotate(-1deg);
+  box-shadow: 0 16px 48px rgba(58,141,222,0.18), 0 4px 16px rgba(127,83,172,0.11);
+}
+
+.user-column h2 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 1.2em;
+  color: #3a8dde;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+#user2-col h2 {
+  color: #7f53ac;
+}
+
+label[for^="user"] {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  color: #3a4a5d;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Add flag emoji as pseudo-elements for language selectors */
+#user1-lang::before {
+  content: '🌍';
+  margin-right: 0.5em;
+}
+#user2-lang::before {
+  content: '🌏';
+  margin-right: 0.5em;
+}
+
+select {
+  width: 100%;
+  padding: 0.5em 1em;
+  border-radius: 12px;
+  border: 2px solid #e0e7ef;
+  background: #f3f6fa;
+  font-size: 1rem;
+  margin-bottom: 1.2em;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(58,141,222,0.04);
+}
+select:focus {
+  border: 2px solid #3a8dde;
+  outline: none;
+  box-shadow: 0 0 0 2px #7f53ac33;
+}
+
+.main-controls {
+  padding: 0.5rem 0 1.2em 0;
+}
+
+canvas.visualizer {
+  display: block;
+  margin-bottom: 1em;
+  background: #eaf1fb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(58,141,222,0.07);
+  border: 2.5px solid #3a8dde;
+  animation: visualizer-glow 2.5s infinite alternate;
+}
+#visualizer2 {
+  border-color: #7f53ac;
+}
+@keyframes visualizer-glow {
+  0% { box-shadow: 0 0 0 0 #3a8dde44; }
+  100% { box-shadow: 0 0 16px 4px #3a8dde44; }
+}
+
+#visualizer2 {
+  animation: visualizer-glow2 2.5s infinite alternate;
+}
+@keyframes visualizer-glow2 {
+  0% { box-shadow: 0 0 0 0 #7f53ac44; }
+  100% { box-shadow: 0 0 16px 4px #7f53ac44; }
+}
+
+#buttons1, #buttons2 {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: center;
+}
+
+button {
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, #3a8dde 60%, #7f53ac 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7em 1.5em;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(58,141,222,0.08);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+button:hover,
+button:focus {
+  background: linear-gradient(90deg, #7f53ac 60%, #3a8dde 100%);
+  box-shadow: 0 4px 16px rgba(127,83,172,0.13);
+  outline: none;
+  transform: translateY(-2px) scale(1.03);
+}
+button:active {
+  background: #3a8dde;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transform: translateY(1px) scale(0.98);
+}
+button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3a8dde, #7f53ac);
+  transition: width 0.3s cubic-bezier(.77,0,.18,1), left 0.3s cubic-bezier(.77,0,.18,1);
+}
+button:hover::after, button:focus::after {
+  width: 80%;
+  left: 10%;
+}
+
+button.delete {
+  background: #f44336;
+  color: #fff;
+  padding: 0.5em 1em;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  margin-left: 1em;
+  box-shadow: 0 2px 8px rgba(244,67,54,0.08);
+}
+button.delete:hover {
+  background: #d32f2f;
+}
+
+.sound-clips {
+  flex: 1;
+  overflow: auto;
+  margin-top: 1.2em;
+}
+
+.clip {
+  background: linear-gradient(90deg, #eaf1fb 60%, #f3eafc 100%);
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 1px 8px rgba(58,141,222,0.07);
+  padding: 1em 1em 0.5em 1em;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-left: 4px solid #3a8dde;
+  position: relative;
+}
+#sound-clips2 .clip {
+  border-left: 4px solid #7f53ac;
+}
+.clip p {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1a365d;
+  cursor: pointer;
+}
+audio {
+  width: 100%;
+  display: block;
+  margin: 0.7em auto 0.5em;
+  border-radius: 8px;
+  background: #eaf1fb;
+}
+
+/* Checkbox hack to control information box display */
+label[for="toggle"] {
+  font-size: 2.2rem;
+  position: fixed;
+  top: 1.2em;
+  right: 1.5em;
+  z-index: 10;
+  cursor: pointer;
+  background: #222;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.2em 0.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+label[for="toggle"]:hover {
+  background: #0088cc;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  top: -100px;
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 370px;
+  max-width: 90vw;
+  height: 100vh;
+  transform: translateX(110%);
+  transition: 0.3s all cubic-bezier(.77,0,.18,1);
+  background: #fff;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.09);
+  padding: 2.5em 2em 2em 2em;
+  z-index: 9;
+  border-radius: 18px 0 0 18px;
+  overflow-y: auto;
+}
+
+aside h2 {
+  font-size: 1.3rem;
+  color: #0088cc;
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+aside p {
+  font-size: 1.08rem;
+  margin: 0.7em 0;
+  color: #2d3a4a;
+}
+
+aside a {
+  color: #0088cc;
+  text-decoration: underline;
+}
+
+input[type="checkbox"]:checked ~ aside {
+  transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    margin-top: 1.5em;
+  }
+  .user-column {
+    max-width: 98vw;
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+  aside {
+    width: 100vw;
+    border-radius: 0;
+    padding: 2em 1em 1.5em 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    margin-top: 0.5em;
+    gap: 1em;
+  }
+  .user-column {
+    padding: 1em 0.5em 1em 0.5em;
+  }
+  aside {
+    padding: 1.2em 0.5em 1em 0.5em;
+  }
+}
+
+/* BEGIN: Suggestions Panel Styles (removable) */
+/* END: Suggestions Panel Styles */
